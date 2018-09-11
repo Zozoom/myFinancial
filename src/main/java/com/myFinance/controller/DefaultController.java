@@ -1,17 +1,26 @@
 package com.myFinance.controller;
 
 import com.myFinance.MainFinanceApplication;
+import com.myFinance.entity.TransactionItem;
+import com.myFinance.service.TransactionItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class DefaultController {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
+
+    @Autowired
+    private TransactionItemService transactionItemService;
+
+    private TransactionItem transactionItem;
 
     // Default Home Page
     @RequestMapping("/")
@@ -25,6 +34,41 @@ public class DefaultController {
     public String home() {
         log.info("HOME PAGE");
         return "/home";
+    }
+
+    // Transaction PAGE
+    @RequestMapping("/transaction")
+    public String transaction(Model model) {
+        log.info("Transaction PAGE Loading");
+
+        TransactionItem transactionItem = new TransactionItem();
+
+        model.addAttribute("item",transactionItem);
+        model.addAttribute("directions", TransactionItem.Direction.values());
+        model.addAttribute("currencies", TransactionItem.Currency.values());
+
+        return "/transaction";
+    }
+
+    // Transaction PAGE
+    @RequestMapping(value = "/transaction/make", method = RequestMethod.POST)
+    public String transaction(@ModelAttribute TransactionItem item) {
+        log.info("Transaction PAGE");
+        log.info(">> [transaction] - transaction Registration - POST | getQuantity: {}", item.getQuantity());
+
+        transactionItemService.makeTransaction(item);
+
+        return "/home";
+    }
+
+    // Financial Summarise
+    @RequestMapping("/finsum")
+    public String finsum(Model model) {
+        log.info("Financial Summarise PAGE");
+
+        model.addAttribute("items",transactionItemService.getTransactionbyId());
+
+        return "/finsum";
     }
 
     // Login form
