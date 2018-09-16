@@ -6,7 +6,7 @@
 
     <div th:fragment="header-css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" th:href="@{./css/main.css}" href="../../css/main.css"/>
+        <link rel="stylesheet" th:href="@{./css/main.css}" href="/static/css/main.css"/>
         <link rel="stylesheet" href="/static/css/table.css" th:href="@{/css/table.css}"/>
     </div>
 
@@ -18,13 +18,13 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Financial App</a>
+                <a class="navbar-brand" href="#">Family Budget</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
 
                 <li><a href="/transaction">Transactions</a></li>
-                <li><a href="/finsum">Summarise</a></li>
+                <li><a href="/summary">Summary</a></li>
 
                 <!--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Other Pages<span class="caret"></span></a>-->
                     <!--<ul class="dropdown-menu">-->

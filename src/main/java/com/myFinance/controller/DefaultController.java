@@ -88,7 +88,7 @@ public class DefaultController {
             log.info("Integer.parseInt(item.getQuantity()): " + Integer.parseInt(item.getQuantity()));
 
             tis.makeTransaction(item);
-            return "redirect:/finsum";
+            return "redirect:/summary";
         }
         else{
             String errorMsg = "The Quantity cannot be ZERO!";
@@ -100,8 +100,8 @@ public class DefaultController {
     }
 
     // Financial Summarise
-    @RequestMapping("/finsum")
-    public String finsum(Model model) {
+    @RequestMapping("/summary")
+    public String summary(Model model) {
         log.info("Financial Summarise PAGE");
 
         List<TransactionItem> items = tis.getAllTransaction();
@@ -111,9 +111,10 @@ public class DefaultController {
             log.info(" Item: "+item.getQuantity());
         }
 
+        model.addAttribute("category", TransactionItem.Category.values());
         model.addAttribute("items",items);
 
-        return "/finsum";
+        return "/summary";
     }
 
     // Login form

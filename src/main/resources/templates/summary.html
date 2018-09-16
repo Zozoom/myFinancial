@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Summary - Family Budget</title>
+    <div th:replace="fragments/header :: header-css"/>
+    <link rel="stylesheet" href="/static/css/summaryPage.css" th:href="@{/css/summaryPage.css}"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="container">
+        <div>
+            <h1>Budget Summary</h1>
+            <p>This a summary page. Today is [ Here comes the date. ] </p>
+
+            <div class="summaryFilter">
+                <label>Filter</label>
+
+                <label>Year: </label><select id="year"></select>
+                <label>Month: </label><select id="month"></select>
+                <label>Day: </label><select id="day"></select>
+
+                <label for="category">Category: </label>
+                <select id="category" th:field="*{category}" required="required">
+                    <option value="" hidden="hidden" selected="selected">Select One..</option>
+                    <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
+                </select>
+
+                <button type="submit">Filter</button>
+
+                <input type="text" id="mySearch" onkeyup="searchInTable()" placeholder="Search for names.." title="Type in a name"/>
+            </div>
+
+            <hr/>
+
+            <div class="tableFixHead">
+                <table class="customers" id="myTable">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Cards</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Sum</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${items}">
+                        <td><span th:text="${item.date}"> direction </span></td>
+                        <td><span th:text="${item.cards}"> quantity </span></td>
+                        <td><span th:text="${item.direction}"> currency </span></td>
+                        <td><span th:text="${item.category}"> date </span></td>
+                        <td><span th:text="${item.quantity}"> transactionNumber </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr/>
+
+            <table class="customers">
+                <tr>
+                    <th>Income Sum:</th>
+                    <th>Expense Sum:</th>
+                    <th>Difference Sum:</th>
+                </tr>
+                <tr>
+                    <td><span> 100000 Huf </span></td>
+                    <td><span> 100000 Huf </span></td>
+                    <td><span> 100000 Huf </span></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- footer -->
+<div th:replace="fragments/footer :: footer"/>
+
+<!-- scripts -->
+<script type="text/javascript" src="/static/js/dateFilter.js" th:src="@{/js/dateFilter.js}"></script>
+<script type="text/javascript" src="/static/js/searchInTable.js" th:src="@{/js/searchInTable.js}"></script>
+
+</body>
+</html>
