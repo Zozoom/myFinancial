@@ -8,6 +8,10 @@ public interface TransactionItemService {
 
     String makeTransaction (TransactionItem item);
 
+    Integer getAllIncome ();
+
+    Integer getAllExpense ();
+
     String deleteTransaction (TransactionItem item);
 
     String modifyTransaction (TransactionItem item);

@@ -19,12 +19,12 @@
  * The method which make separate the number.
  * */
     function thousandSeparator() {
-        if(isNumberKey(element) && element.value != null || !isNaN(element.value)){
+        if(isNumberKey(element) && element.value !== "" && (element.value != null || !isNaN(element.value))){
             element.value = element.value.toString().replace(",", "");
             element.value = element.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         else {
-            element.value = 0;
+            element.value = "";
         }
     }
 

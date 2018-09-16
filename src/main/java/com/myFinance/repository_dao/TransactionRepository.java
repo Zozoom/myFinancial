@@ -16,8 +16,9 @@ public interface TransactionRepository extends CrudRepository <TransactionItem, 
     TransactionItem findById(Long id);
 
     /*****************************
-     * Find User By ID
+     * Find User By TransactionNumber
      * ***************************/
     TransactionItem findByTransactionNumber(int transactionNumber);
+
 
 }

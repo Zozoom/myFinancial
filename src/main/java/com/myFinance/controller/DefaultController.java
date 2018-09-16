@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -21,23 +22,40 @@ public class DefaultController {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
 
+    /**
+     * tis ==> Transaction Item Service
+     * */
     @Autowired
-    private TransactionItemService transactionItemService;
+    private TransactionItemService tis;
 
     private TransactionItem transactionItem;
 
     // Default Home Page
     @RequestMapping("/")
-    public String home1() {
-        log.info("HOME PAGE");
-        return "/home";
+    public String home1(Model model) {
+        log.info("HOME PAGE 1");
+
+        model.addAttribute("incomes", tis.getAllIncome());
+        model.addAttribute("expense", tis.getAllExpense());
+
+        int diff = tis.getAllIncome()-tis.getAllExpense();
+        model.addAttribute("differ", diff);
+
+        return "/homeS";
     }
 
     // Default Home Page 2
     @RequestMapping("/home")
-    public String home() {
+    public String home(Model model) {
         log.info("HOME PAGE");
-        return "/home";
+
+        model.addAttribute("incomes", tis.getAllIncome());
+        model.addAttribute("expense", tis.getAllExpense());
+
+        int diff = tis.getAllIncome()-tis.getAllExpense();
+        model.addAttribute("differ", diff);
+
+        return "/homeS";
     }
 
     // Transaction PAGE
@@ -47,9 +65,10 @@ public class DefaultController {
 
         TransactionItem transactionItem = new TransactionItem();
 
-        model.addAttribute("item",transactionItem);
+        model.addAttribute("item",       transactionItem);
         model.addAttribute("directions", TransactionItem.Direction.values());
-        model.addAttribute("currencies", TransactionItem.Currency.values());
+        model.addAttribute("cards",      TransactionItem.Cards.values());
+        model.addAttribute("category",   TransactionItem.Category.values());
 
         return "/transaction";
     }
@@ -60,13 +79,15 @@ public class DefaultController {
         log.info("Transaction PAGE");
         log.info(">> [transaction] - transaction Registration - POST | getQuantity: {}", item.getQuantity());
 
+        // Cut out the splitter from the quantity.
         item.setQuantity(item.getQuantity().replace(",",""));
         log.info("item.getQuantity(): " + item.getQuantity());
 
+        // Check the quantity bigger than 0
         if(Integer.parseInt(item.getQuantity()) > 0){
             log.info("Integer.parseInt(item.getQuantity()): " + Integer.parseInt(item.getQuantity()));
 
-            transactionItemService.makeTransaction(item);
+            tis.makeTransaction(item);
             return "redirect:/finsum";
         }
         else{
@@ -83,7 +104,7 @@ public class DefaultController {
     public String finsum(Model model) {
         log.info("Financial Summarise PAGE");
 
-        List<TransactionItem> items = transactionItemService.getAllTransaction();
+        List<TransactionItem> items = tis.getAllTransaction();
 
         for (TransactionItem item : items) {
             log.info(" Item: "+item.getTransactionNumber());

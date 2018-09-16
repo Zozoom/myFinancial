@@ -30,39 +30,41 @@
 
                 <div class="inputs">
 
-                    <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}" >text</p>
+                    <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}">text</p>
 
-                    <div class="labelWithAction">
-                        <label for="direction">Direction:</label>
+                    <div class="labelWithInput">
+                        <label for="quantity">Quantity-</label>
+                        <input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0" required="required"/>
+                    </div>
+
+                    <div class="labelWithSelect">
+                        <label for="direction">Type-------</label>
                         <select id="direction" th:field="*{direction}" required="required">
                             <option value="" hidden="hidden" selected="selected">Select One..</option>
                             <option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>
                         </select>
                     </div>
 
-                    <!--<div class="labelWithAction">-->
-                        <!--<label for="mainCategory">Category:</label>-->
-                        <!--<select id="mainCategory" th:field="*{direction}" required="required">-->
-                            <!--<option value="" hidden="hidden" selected="selected">Select One..</option>-->
-                            <!--<option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
-
-                    <div class="labelWithAction">
-                        <label for="quantity">Quantity:</label>
-                        <input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0" required="required"/>
-                    </div>
-
-                    <div class="labelWithAction">
-                        <label for="currency">Currency:</label>
-                        <select id="currency" th:field="*{currency}" required="required">
+                    <div class="labelWithSelect">
+                        <label for="cards">Cards:-----</label>
+                        <select id="cards" th:field="*{cards}" required="required">
                             <option value="" hidden="hidden" selected="selected">Select One..</option>
-                            <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}">Select Currency:</option>
+                            <option th:each="card : ${cards}" th:value="${card}" th:text="${card}">Select</option>
                         </select>
                     </div>
 
-                    <div class="labelWithAction">
+
+                    <div class="labelWithSelect">
+                        <label for="transCategory">Category-</label>
+                        <select id="transCategory" th:field="*{category}" required="required">
+                            <option value="" hidden="hidden" selected="selected">Select One..</option>
+                            <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
+                        </select>
+                    </div>
+
+                    <div class="labelWithComment">
                         <label for="comment">Comment:</label>
+                        <br/>
                         <textarea id="comment" name="comment" placeholder="You can leave comment here..."></textarea>
                     </div>
 
