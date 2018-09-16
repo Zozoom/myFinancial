@@ -5,6 +5,8 @@
 
     <div th:replace="fragments/header :: header-css"/>
 
+    <link rel="stylesheet" href="/static/css/table.css" th:href="@{/css/table.css}"/>
+
 </head>
 <body>
 
@@ -16,10 +18,27 @@
         <div class="jumbotron">
             <h1>Financial Summarise</h1>
             <p>Here you can see the Summarise about your financial status.</p>
-            <p th:text="${items.date}">asdasd</p>
-            <p th:text="${items.direction}">asdasd</p>
-            <p th:text="${items.quantity}">asdasd</p>
-            <p th:text="${items.currency}">asdasd</p>
+            <!--<p th:text="${items.date}">asdasd</p>-->
+            <!--<p th:text="${items.direction}">asdasd</p>-->
+            <!--<p th:text="${items.quantity}">asdasd</p>-->
+            <!--<p th:text="${items.currency}">asdasd</p>-->
+
+            <table id="customers">
+                <tr>
+                    <th>Direction</th>
+                    <th>Quantity</th>
+                    <th>Currency</th>
+                    <th>Date</th>
+                    <th>Transaction Number</th>
+                </tr>
+                <tr th:each="item : ${items}">
+                    <td><span th:text="${item.direction}"> direction </span></td>
+                    <td><span th:text="${item.quantity}"> quantity </span></td>
+                    <td><span th:text="${item.currency}"> currency </span></td>
+                    <td><span th:text="${item.date}"> date </span></td>
+                    <td><span th:text="${item.transactionNumber}"> transactionNumber </span></td>
+                </tr>
+            </table>
 
         </div>
     </div>

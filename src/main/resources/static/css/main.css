@@ -1,22 +1,45 @@
-h1{
-	color: #00ff2f;
-}
+/*****************************
+ * Tags
+ *****************************/
 
-h2{
-	color:#FF0000;
+body{
+    font-family: 'PT Sans', sans-serif;
 }
 
 footer{
     margin-top:60px;
 }
 
+hr{
+    border: 1px solid #2a2b2b;
+}
+
+/*****************************
+ * Classes
+ *****************************/
+
 .btn-primary{
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 50%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
-    margin: auto;
+    background-color: #4CAF50;
+    border: 1px solid green;
+    color: white;
+    font-weight:bold;
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 50%;
+    display: block;
+    margin: 10px auto;
+    border-radius: 4px;
+}
+
+.errorMsg{
+    background-color: #af3930;
+    border: 1px solid #80000a;
+    font-size: 10px;
+    color: white;
+    text-align:center;
+    font-weight:bold;
+    width: 100%;
+    display: block;
+    margin: 5px auto;
+    border-radius: 4px;
 }

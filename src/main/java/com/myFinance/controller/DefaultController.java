@@ -11,6 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DefaultController {
@@ -52,13 +56,26 @@ public class DefaultController {
 
     // Transaction PAGE
     @RequestMapping(value = "/transaction/make", method = RequestMethod.POST)
-    public String transaction(@ModelAttribute TransactionItem item) {
+    public String transaction(@ModelAttribute TransactionItem item, final RedirectAttributes redirectAttrs) {
         log.info("Transaction PAGE");
         log.info(">> [transaction] - transaction Registration - POST | getQuantity: {}", item.getQuantity());
 
-        transactionItemService.makeTransaction(item);
+        item.setQuantity(item.getQuantity().replace(",",""));
+        log.info("item.getQuantity(): " + item.getQuantity());
 
-        return "/home";
+        if(Integer.parseInt(item.getQuantity()) > 0){
+            log.info("Integer.parseInt(item.getQuantity()): " + Integer.parseInt(item.getQuantity()));
+
+            transactionItemService.makeTransaction(item);
+            return "redirect:/finsum";
+        }
+        else{
+            String errorMsg = "The Quantity cannot be ZERO!";
+            log.warn(errorMsg);
+            redirectAttrs.addFlashAttribute("transactError", true);
+            redirectAttrs.addFlashAttribute("transMsg", errorMsg);
+            return "redirect:/transaction";
+        }
     }
 
     // Financial Summarise
@@ -66,7 +83,14 @@ public class DefaultController {
     public String finsum(Model model) {
         log.info("Financial Summarise PAGE");
 
-        model.addAttribute("items",transactionItemService.getTransactionbyId());
+        List<TransactionItem> items = transactionItemService.getAllTransaction();
+
+        for (TransactionItem item : items) {
+            log.info(" Item: "+item.getTransactionNumber());
+            log.info(" Item: "+item.getQuantity());
+        }
+
+        model.addAttribute("items",items);
 
         return "/finsum";
     }

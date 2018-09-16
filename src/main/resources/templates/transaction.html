@@ -1,43 +1,78 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Spring Boot Thymeleaf + Spring Security</title>
 
     <div th:replace="fragments/header :: header-css"/>
 
-    <link rel="stylesheet" href="/static/css/dropDown.css" th:href="@{/css/dropDown.css}"/>
+    <link rel="stylesheet" href="/static/css/actionPage.css" th:href="@{/css/actionPage.css}"/>
 
 </head>
-<body>
 
+<body>
+<!-- header -->
 <div th:replace="fragments/header :: header"/>
 
+<!-- container -->
 <div class="container">
 
     <div class="container">
-        <div class="jumbotron">
+        <div>
             <h1>Here you can create Transactions.</h1>
             <p>You can create Income / Expense / Savings </p>
 
-            <form name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post" class="form-signin">
-                <div>
+            <form class="form-Transact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
 
-                    <label for="direction">Direction:</label>
-                    <select id="direction" th:field="*{direction}">
-                        <option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select Direction:</option>
-                    </select>
-                    <br/>
-                    <label for="quantity">Quantity:</label>
-                    <input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="Quantity Number" required="required" />
-                    <br/>
-                    <label for="currency">Currency:</label>
-                    <select id="currency" th:field="*{currency}">
-                        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}">Select Currency:</option>
-                    </select>
+                <p>You can create Income / Expense / Savings </p>
 
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" onclick="window.location.href='/transaction'" class="btn btn-primary">Reset</button>
-                    <button type="button" onclick="window.location.href='/'" class="btn btn-primary">Cancel</button>
+                <hr/>
+
+                <div class="inputs">
+
+                    <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}" >text</p>
+
+                    <div class="labelWithAction">
+                        <label for="direction">Direction:</label>
+                        <select id="direction" th:field="*{direction}" required="required">
+                            <option value="" hidden="hidden" selected="selected">Select One..</option>
+                            <option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>
+                        </select>
+                    </div>
+
+                    <!--<div class="labelWithAction">-->
+                        <!--<label for="mainCategory">Category:</label>-->
+                        <!--<select id="mainCategory" th:field="*{direction}" required="required">-->
+                            <!--<option value="" hidden="hidden" selected="selected">Select One..</option>-->
+                            <!--<option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                    <div class="labelWithAction">
+                        <label for="quantity">Quantity:</label>
+                        <input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0" required="required"/>
+                    </div>
+
+                    <div class="labelWithAction">
+                        <label for="currency">Currency:</label>
+                        <select id="currency" th:field="*{currency}" required="required">
+                            <option value="" hidden="hidden" selected="selected">Select One..</option>
+                            <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}">Select Currency:</option>
+                        </select>
+                    </div>
+
+                    <div class="labelWithAction">
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" name="comment" placeholder="You can leave comment here..."></textarea>
+                    </div>
+
+                    <hr/>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="window.location.href='/transaction'" class="btn btn-primary">Reset</button>
+                        <button type="button" onclick="window.location.href='/'" class="btn btn-primary">Cancel</button>
+                    </div>
 
                 </div>
             </form>
@@ -46,9 +81,12 @@
     </div>
 
 </div>
-<!-- /.container -->
 
+<!-- footer -->
 <div th:replace="fragments/footer :: footer"/>
+
+<!-- scripts -->
+<script type="text/javascript" src="/static/js/formateCurrency.js" th:src="@{/js/formateCurrency.js}"></script>
 
 </body>
 </html>

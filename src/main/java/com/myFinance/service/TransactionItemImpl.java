@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -55,7 +56,13 @@ public class TransactionItemImpl implements TransactionItemService{
 
     @Override
     public TransactionItem getTransactionbyId() {
+
         return transactionRepository.findById(1L);
+    }
+
+    @Override
+    public List<TransactionItem> getAllTransaction() {
+        return (List<TransactionItem>) transactionRepository.findAll();
     }
 
 }

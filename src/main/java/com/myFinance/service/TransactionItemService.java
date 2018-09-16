@@ -2,6 +2,8 @@ package com.myFinance.service;
 
 import com.myFinance.entity.TransactionItem;
 
+import java.util.List;
+
 public interface TransactionItemService {
 
     String makeTransaction (TransactionItem item);
@@ -11,4 +13,6 @@ public interface TransactionItemService {
     String modifyTransaction (TransactionItem item);
 
     TransactionItem getTransactionbyId ();
+
+    List<TransactionItem> getAllTransaction ();
 }

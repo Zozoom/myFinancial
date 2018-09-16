@@ -1,7 +1,5 @@
 package com.myFinance.entity;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
