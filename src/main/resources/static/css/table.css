@@ -1,8 +1,10 @@
 /*****************************
- * Classes
+ * General Table Styles
  *****************************/
 
-/* Scrollable Configuration */
+/*****************************
+ * Table Scrollable Configuration
+ *****************************/
 .tableFixHead {
     overflow-y: scroll;
     height: 400px;
@@ -16,9 +18,12 @@
 .tableFixHead th {
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
-/* Other classes Configuration */
+/*****************************
+ * General Table Styles
+ *****************************/
 .customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -27,7 +32,7 @@
 }
 
 .customers table {
-    overflow-y: auto;
+    overflow-y: scroll;
     height: 100px;
     border-collapse: collapse;
 }
@@ -43,7 +48,6 @@
     background-color: #ffffff;
 }
 
-
 .customers tr:nth-child(even){
     background-color: #dee8e0;
 }
@@ -55,11 +59,14 @@
 .customers th {
     padding: 6px;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #4CAF50;
     color: white;
 }
 
+/*****************************
+ * General Table Row by Direction Styles
+ *****************************/
 .customers #income {
     border-collapse: collapse;
     width: 50%;

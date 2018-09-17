@@ -1,5 +1,5 @@
 /*****************************
- * Tags
+ * General Styles
  *****************************/
 
 body{
@@ -15,10 +15,6 @@ hr{
     border: 1px solid #2a2b2b;
 }
 
-/*****************************
- * Classes
- *****************************/
-
 .btn-primary{
     background-color: #4CAF50;
     border: 1px solid green;
@@ -32,6 +28,18 @@ hr{
     border-radius: 4px;
 }
 
+/*****************************
+ * General Placeholder Style
+ *****************************/
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.6;
+}
+
+/*****************************
+ * General Message Style
+ *****************************/
 .errorMsg{
     background-color: #af3930;
     border: 1px solid #80000a;
@@ -43,4 +51,29 @@ hr{
     display: block;
     margin: 5px auto;
     border-radius: 4px;
+}
+
+/*****************************
+ * ScrollBars
+ *****************************/
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background:  #4CAF50;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #15881a;
 }

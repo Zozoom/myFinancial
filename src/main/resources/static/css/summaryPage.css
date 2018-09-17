@@ -1,10 +1,10 @@
 /*****************************
- * Tags
+ * General Styles Summary Page
  *****************************/
 select {
     color:white;
     margin: 5px auto;
-    padding: 3px;
+    padding: 5px;
     font-size: 13px;
     font-weight:bold;
     cursor: pointer;
@@ -24,13 +24,8 @@ option{
     overflow:hidden;
 }
 
-.summaryFilter label{
-    padding: 5px;
-    margin: auto;
-}
-
 /*****************************
- * Classes
+ * Filter Head Styles
  *****************************/
 .summaryFilter{
     display: inline-block;
@@ -42,3 +37,68 @@ option{
     border-radius: 4px;
     transition-duration: 0.4s;
 }
+
+.summaryFilter label{
+    padding: 5px;
+    margin: auto;
+}
+
+/*****************************
+ * Input Fields
+ *****************************/
+.summarySearchField{
+    display: inline-block;
+    float:right;
+    padding: 10px;
+    color:white;
+}
+
+.summarySearchField span{
+    padding:5px;
+}
+
+.summarySearchField input {
+    background-color: rgba(76, 175, 80, 0.88);
+    border: 1px solid green;
+    padding:5px;
+    color:white;
+    width: 250px;
+    height: 30px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    font-weight:bold;
+}
+
+/*****************************
+ * Buttons
+ *****************************/
+.summaryFilterBtn{
+    display: inline-block;
+    padding: 10px;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+    margin: auto;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: rgba(76, 175, 80, 0.88);
+    color: white;
+}
+
+.button1:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+/*****************************
+ * Checkbox
+ *****************************/

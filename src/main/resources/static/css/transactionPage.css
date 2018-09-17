@@ -1,7 +1,6 @@
 /*****************************
- * Tags
+ * General Styles
  *****************************/
-
 select {
     display: inline-block;
     width: 40%;
@@ -52,20 +51,10 @@ textarea{
     border-radius: 4px;
 }
 
-/*****************************
- * Classes
- *****************************/
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 0.6;
-}
-
 .labelWithSelect{
     width: 50%;
     margin: auto;
 }
-
 
 .labelWithInput{
     width: 50%;

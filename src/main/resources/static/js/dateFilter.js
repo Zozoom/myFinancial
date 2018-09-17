@@ -2,6 +2,7 @@
 var today = new Date();
 var year = today.getFullYear();
 
+
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 
@@ -31,3 +32,7 @@ for(var d=1; d<=31; d++){
     options += "<option>"+ d +"</option>";
 }
 document.getElementById("day").innerHTML = options;
+
+
+const dateStamp = today.getFullYear() +" / "+ monthNames[today.getMonth()] +" / "+today.getDate();
+document.getElementById("dateStamp").innerHTML = "Today is " + dateStamp;
