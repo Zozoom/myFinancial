@@ -15,19 +15,6 @@ hr{
     border: 1px solid #2a2b2b;
 }
 
-.btn-primary{
-    background-color: #4CAF50;
-    border: 1px solid green;
-    color: white;
-    font-weight:bold;
-    padding: 10px 24px;
-    cursor: pointer;
-    width: 50%;
-    display: block;
-    margin: 10px auto;
-    border-radius: 4px;
-}
-
 /*****************************
  * General Placeholder Style
  *****************************/
@@ -54,6 +41,51 @@ hr{
 }
 
 /*****************************
+ * Buttons
+ *****************************/
+.button {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+    margin: auto;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.buttonGreen {
+    background-color: rgba(76, 175, 80, 0.88);
+    color: white;
+}
+
+.buttonGreen:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.buttonYellow {
+    background-color: rgba(255, 177, 0, 0.88);
+    color: white;
+}
+
+.buttonYellow:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.buttonRed {
+    background-color: rgba(128, 0, 10, 0.88);
+    color: white;
+}
+
+.buttonRed:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+/*****************************
  * ScrollBars
  *****************************/
 /* width */
@@ -77,3 +109,7 @@ hr{
 ::-webkit-scrollbar-thumb:hover {
     background: #15881a;
 }
+
+/*****************************
+ * Checkbox
+ *****************************/

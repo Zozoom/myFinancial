@@ -38,6 +38,14 @@ option{
     transition-duration: 0.4s;
 }
 
+.summaryContainer{
+    background-color: #ecf5ee5c;
+    border: 1.4px solid #808080;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    padding: 10px;
+}
+
 .summaryFilter label{
     padding: 5px;
     margin: auto;
@@ -76,29 +84,3 @@ option{
     display: inline-block;
     padding: 10px;
 }
-
-.button {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid green;
-    border-radius: 4px;
-    padding: 4px;
-    text-align: center;
-    margin: auto;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.button1 {
-    background-color: rgba(76, 175, 80, 0.88);
-    color: white;
-}
-
-.button1:hover {
-    background-color: #ffffff;
-    color: black;
-}
-
-/*****************************
- * Checkbox
- *****************************/
