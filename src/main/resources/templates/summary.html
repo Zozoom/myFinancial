@@ -50,23 +50,26 @@
                             <th><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp;Type</th>
                             <th><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Category</th>
                             <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Sum</th>
+                            <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Comment</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="item : ${items}">
-                            <td><span th:text="${item.date}"> direction </span></td>
-                            <td><span th:text="${item.cards}"> quantity </span></td>
-                            <td><span th:text="${item.direction}"> currency </span></td>
-                            <td><span th:text="${item.category}"> date </span></td>
-                            <td><span th:text="${item.quantity}"> transactionNumber </span></td>
+                            <td><span th:text="${item.creationDate}"> Date </span></td>
+                            <td><span th:text="${item.cards}"> Cards </span></td>
+                            <td><span th:text="${item.direction}"> Type </span></td>
+                            <td><span th:text="${item.category}"> Category </span></td>
+                            <td><span th:text="${item.quantity}"> Sum </span></td>
+                            <td><span th:text="${item.comment}"> Comment </span></td>
                             <td><button class="button buttonGreen"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td><button class="button buttonGreen"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                         </tbody>
                         <thead>
                         <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

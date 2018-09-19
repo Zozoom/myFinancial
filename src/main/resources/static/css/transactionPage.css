@@ -3,6 +3,7 @@
  *****************************/
 select {
     color:white;
+    width: 200px;
     margin: 5px auto;
     padding: 5px;
     font-size: 13px;
@@ -27,11 +28,12 @@ option{
 input{
     display: inline-block;
     color:white;
-    padding: 5px;
+    width: 200px;
+    padding: 2px;
     margin: auto;
     font-size: 15px;
     font-weight:bold;
-    text-align: center;
+    text-align: left;
     background-color: rgba(76, 175, 80, 0.9);
     border: 1px solid green;
     border-radius: 4px;
@@ -46,9 +48,10 @@ textarea{
     font-weight:bold;
     width: 300px;
     height: 100px;
-    margin: 5px -20% auto;
+    margin: 5px 0% auto;
     border-radius: 4px;
 }
+
 
 /*****************************
  * General Input Form Styles
@@ -97,4 +100,21 @@ textarea{
 .formButton .button{
     width: 20%;
     margin: 5px;
+}
+
+/*****************************
+ * Tables for Transaction Page
+ *****************************/
+.customers {
+    width: 40%;
+    text-align: center;
+    margin:auto;
+}
+
+.customers td:nth-child(even){
+    text-align: left;
+}
+
+.customers td:nth-child(odd){
+    text-align: right;
 }

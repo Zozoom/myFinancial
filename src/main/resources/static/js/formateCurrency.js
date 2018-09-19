@@ -19,11 +19,19 @@
  * The method which make separate the number.
  * */
     function thousandSeparator() {
-        if(isNumberKey(element) && element.value !== "" && (element.value != null || !isNaN(element.value))){
-            element.value = element.value.toString().replace(",", "");
-            element.value = element.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        if(isNumberKey(element) && element.value.length <=12 && element.value != null && element.value !== ""){
+
+            console.log("Size: "+element.value.length);
+
+            element.value = element.value.toString().replace(",","").replace(",","").replace(",","");
+            console.log("Before: "+element.value);
+
+            element.value = element.value.toString().replace(new RegExp('\\B(?=(\\d{3})+(?!\\d))', 'g'), ",");
+            console.log("After: "+element.value);
         }
         else {
+            alert("Quantity value is invalid or the number is too big. (Max number 10 numeric)");
             element.value = "";
         }
     }
@@ -33,5 +41,5 @@
  * */
     function isNumberKey(evt){
         var charCode = (evt.which) ? evt.which : event.keyCode;
-        return !(charCode > 31 && (charCode < 48 || charCode > 57));
+        return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
     }

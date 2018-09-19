@@ -6,7 +6,12 @@ import java.util.List;
 
 public interface TransactionItemService {
 
-    String makeTransaction (TransactionItem item);
+    /**
+     * Transactions
+     * */
+    Boolean makeTransaction (TransactionItem item);
+
+    List<TransactionItem> getAllTransaction ();
 
     Integer getAllIncome ();
 
@@ -15,8 +20,4 @@ public interface TransactionItemService {
     String deleteTransaction (TransactionItem item);
 
     String modifyTransaction (TransactionItem item);
-
-    TransactionItem getTransactionbyId ();
-
-    List<TransactionItem> getAllTransaction ();
 }

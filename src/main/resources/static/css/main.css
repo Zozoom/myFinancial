@@ -30,13 +30,28 @@ hr{
 .errorMsg{
     background-color: #af3930;
     border: 1px solid #80000a;
-    font-size: 10px;
+    font-size: 14px;
     color: white;
     text-align:center;
     font-weight:bold;
-    width: 100%;
+    width: 40%;
+    padding: 3px;
     display: block;
-    margin: 5px auto;
+    margin: 10px auto;
+    border-radius: 4px;
+}
+
+.successMsg{
+    background-color: #4baf4f;
+    border: 1px solid #009909;
+    font-size: 14px;
+    color: white;
+    text-align:center;
+    font-weight:bold;
+    width: 40%;
+    padding: 3px;
+    display: block;
+    margin: 10px auto;
     border-radius: 4px;
 }
 
@@ -55,13 +70,18 @@ hr{
     cursor: pointer;
 }
 
+.button:disabled{
+    background-color: #a4aaa5;
+    color: #000000;
+}
+
 .buttonGreen {
     background-color: rgba(76, 175, 80, 0.88);
     color: white;
 }
 
 .buttonGreen:hover {
-    background-color: #ffffff;
+    background-color: #82ff86b5;
     color: black;
 }
 
@@ -71,7 +91,7 @@ hr{
 }
 
 .buttonYellow:hover {
-    background-color: #ffffff;
+    background-color: #ffe4a3bf;
     color: black;
 }
 
@@ -81,7 +101,7 @@ hr{
 }
 
 .buttonRed:hover {
-    background-color: #ffffff;
+    background-color: rgba(245, 176, 182, 0.85);
     color: black;
 }
 

@@ -28,40 +28,32 @@ public class DefaultController {
     @Autowired
     private TransactionItemService tis;
 
-    private TransactionItem transactionItem;
-
-    // Default Home Page
+    /**
+     * Default Home Page
+     * */
     @RequestMapping("/")
-    public String home1(Model model) {
-        log.info("HOME PAGE 1");
-
-        model.addAttribute("incomes", tis.getAllIncome());
-        model.addAttribute("expense", tis.getAllExpense());
-
-        int diff = tis.getAllIncome()-tis.getAllExpense();
-        model.addAttribute("differ", diff);
-
-        return "/homeS";
-    }
-
-    // Default Home Page 2
-    @RequestMapping("/home")
     public String home(Model model) {
-        log.info("HOME PAGE");
+        log.info(">> [Controller|home] - Getting to the Home page.");
 
-        model.addAttribute("incomes", tis.getAllIncome());
-        model.addAttribute("expense", tis.getAllExpense());
+        int income = tis.getAllIncome();
+        int expense = tis.getAllExpense();
 
-        int diff = tis.getAllIncome()-tis.getAllExpense();
+        model.addAttribute("incomes", income);
+        model.addAttribute("expense", expense);
+
+        int diff = income - expense;
         model.addAttribute("differ", diff);
 
-        return "/homeS";
+        log.info(">> [Controller|home] - Attributes added, loading home...");
+        return "/home";
     }
 
-    // Transaction PAGE
+    /**
+     * Transaction Page
+     * */
     @RequestMapping("/transaction")
     public String transaction(Model model) {
-        log.info("Transaction PAGE Loading");
+        log.info(">> [Controller|transaction] - Getting to the Transaction page.");
 
         TransactionItem transactionItem = new TransactionItem();
 
@@ -70,50 +62,49 @@ public class DefaultController {
         model.addAttribute("cards",      TransactionItem.Cards.values());
         model.addAttribute("category",   TransactionItem.Category.values());
 
+        log.info(">> [Controller|transaction] - Attributes added, loading transactions...");
         return "/transaction";
     }
 
-    // Transaction PAGE
+    /**
+     * Transaction Creating Endpoint
+     * Send transaction item to persist.
+     * */
     @RequestMapping(value = "/transaction/make", method = RequestMethod.POST)
-    public String transaction(@ModelAttribute TransactionItem item, final RedirectAttributes redirectAttrs) {
-        log.info("Transaction PAGE");
-        log.info(">> [transaction] - transaction Registration - POST | getQuantity: {}", item.getQuantity());
+    public String transactionPersist(@ModelAttribute TransactionItem item, final RedirectAttributes redirectAttrs) {
+        log.info(">> [Controller|transactionPersist] - Called the transactionPersist endpoint.");
 
-        // Cut out the splitter from the quantity.
-        item.setQuantity(item.getQuantity().replace(",",""));
-        log.info("item.getQuantity(): " + item.getQuantity());
+        // Define error message.
+        String errorMsg = "The Quantity number is invalid!";
+        String succesMsg = "Transaction successfully saved.";
 
-        // Check the quantity bigger than 0
-        if(Integer.parseInt(item.getQuantity()) > 0){
-            log.info("Integer.parseInt(item.getQuantity()): " + Integer.parseInt(item.getQuantity()));
-
-            tis.makeTransaction(item);
-            return "redirect:/summary";
+        if(tis.makeTransaction(item)){
+            log.info(">> [Controller|transactionPersist] - Transaction successfully saved.");
+            redirectAttrs.addFlashAttribute("transactSaved", true);
+            redirectAttrs.addFlashAttribute("transMsg", succesMsg);
+            return "redirect:/transaction";
         }
         else{
-            String errorMsg = "The Quantity cannot be ZERO!";
-            log.warn(errorMsg);
+            log.warn(">> [Controller|transactionPersist] - There was an error: " + errorMsg);
             redirectAttrs.addFlashAttribute("transactError", true);
             redirectAttrs.addFlashAttribute("transMsg", errorMsg);
             return "redirect:/transaction";
         }
     }
 
-    // Financial Summarise
+    /**
+     * Summary Page
+     * */
     @RequestMapping("/summary")
     public String summary(Model model) {
-        log.info("Financial Summarise PAGE");
+        log.info(">> [Controller|summary] - Getting to the Summary page.");
 
         List<TransactionItem> items = tis.getAllTransaction();
-
-        for (TransactionItem item : items) {
-            log.info(" Item: "+item.getTransactionNumber());
-            log.info(" Item: "+item.getQuantity());
-        }
 
         model.addAttribute("category", TransactionItem.Category.values());
         model.addAttribute("items",items);
 
+        log.info(">> [Controller|summary] - Attributes added, loading transaction...");
         return "/summary";
     }
 

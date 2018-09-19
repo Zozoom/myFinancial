@@ -21,6 +21,9 @@ public class TransactionItem {
     @Column(name = "Currency", nullable=false)
     private String currency;
 
+    @Column(name = "Comment")
+    private String comment;
+
     @Column(name = "Category", nullable=false)
     private String category;
 
@@ -31,7 +34,7 @@ public class TransactionItem {
     private String quantity;
 
     @Column(name = "Date", nullable=false)
-    private Date date;
+    private Date creationDate;
 
     /**
      * Direction of the Transaction
@@ -157,12 +160,12 @@ public class TransactionItem {
         this.quantity = quantity;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public int getTransactionNumber() {
@@ -189,6 +192,14 @@ public class TransactionItem {
         this.cards = cards;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "TransactionItem{" +
@@ -196,10 +207,11 @@ public class TransactionItem {
                 ", transactionNumber=" + transactionNumber +
                 ", direction='" + direction + '\'' +
                 ", currency='" + currency + '\'' +
+                ", comment='" + comment + '\'' +
                 ", category='" + category + '\'' +
                 ", cards='" + cards + '\'' +
                 ", quantity='" + quantity + '\'' +
-                ", date=" + date +
+                ", creationDate=" + creationDate +
                 '}';
     }
 }

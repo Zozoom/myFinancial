@@ -30,6 +30,7 @@
 
                 <div>
                     <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}">text</p>
+                    <p class="successMsg" th:if="${transactSaved}" th:text="${transMsg}">text</p>
 
                     <table class="customers">
                         <thead>
@@ -73,7 +74,7 @@
                         <tr>
                             <td><label for="quantity">Comment: </label></td>
                             <td>
-                                <textarea id="comment" name="comment" placeholder="You can leave comment here..."></textarea>
+                                <textarea id="comment" th:field="*{comment}" name="comment" placeholder="You can leave comment here..."></textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -92,7 +93,6 @@
                     <div>
                         <button type="submit" class="button buttonGreen">Save</button>
                         <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" >Reset</button>
-                        <button type="button" class="button buttonRed" onclick="window.location.href='/'">Cancel</button>
                     </div>
                 </div>
                 <!-- Buttons -->
@@ -145,9 +145,8 @@
                 <!-- Buttons -->
                 <div class="formButton">
                     <div>
-                        <button type="submit" class="button buttonGreen">Save</button>
-                        <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" >Reset</button>
-                        <button type="button" class="button buttonRed" onclick="window.location.href='/'">Cancel</button>
+                        <button type="submit" class="button buttonGreen" disabled="disabled">Save</button>
+                        <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" disabled="disabled">Reset</button>
                     </div>
                 </div>
                 <!-- Buttons -->
