@@ -4,15 +4,79 @@
 
 body{
     font-family: 'PT Sans', sans-serif;
-    background-color:#0000002e;
+    background: #0000002e url("/images/gb1.jpg") no-repeat center;
+    min-height: 1000px;
+    background-size: cover;
+    position: relative;
 }
 
 footer{
-    margin-top:60px;
+    background-color: #78d63ac9;
+    border: 2px solid #00000036;
+    border-radius: 8px;
+    text-shadow: -1px 0 #00000078, 0 1px #00000078, 1px 0 #00000078, 0 -1px #00000078;
+    font-size: 14px;
+    color: #ffffff;
+    text-align:center;
+    font-weight:bold;
+    padding: 8px;
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    height: 50px;
+    z-index: 10;
 }
 
 hr{
     border: 1px solid #2a2b2b;
+}
+
+.container{
+    max-width: 1200px;
+    min-width: 900px;
+    padding-bottom: 3%;
+    padding-top: 3%;
+}
+
+.navbar {
+    background-color: #78d63ac9;
+    border: 2px solid #00000036;
+    text-shadow: -1px 0 #00000078, 0 1px #00000078, 1px 0 #00000078, 0 -1px #00000078;
+    border-radius: 8px;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+
+}
+
+.navbar-nav{
+    margin-left: -220px;
+}
+
+.navbar .brandIcon{
+    width: 10%;
+    height: 10%;
+    float: left;
+}
+
+.navbar-inverse .navbar-header, .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav li a {
+    font-size: 16px;
+    color: #e4e4e4;
+    font-weight:bold;
+    transition-property: font-size, color, text-shadow;
+    transition-duration: 0.6s;
+}
+
+.navbar-inverse .navbar-brand{
+    font-size: 20px;
+}
+
+.navbar-inverse .navbar-header:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav li a:hover {
+    font-size: 20px;
+    color: #a3ec3a;
+    font-weight:bold;
+    transition-property: font-size, color, text-shadow;
+    transition-duration: 0.6s;
 }
 
 /*****************************

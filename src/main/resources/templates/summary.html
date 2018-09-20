@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Summary - Family Budget</title>
+    <link rel="icon" href="/images/tree.ico" type="image/x-icon"/>
     <div th:replace="fragments/header :: header-css"/>
+
     <link rel="stylesheet" href="/static/css/summaryPage.css" th:href="@{/css/summaryPage.css}"/>
 </head>
 <body>
@@ -10,95 +12,93 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-    <div class="container">
-        <div>
-            <h1>Budget Summary</h1>
+    <div>
+        <h1>Budget Summary</h1>
 
-            <div class="summaryContainer">
-                <div class="summaryFilter">
-                    <label>Filter <span class="glyphicon glyphicon-share-alt"></span></label>
+        <div class="summaryContainer">
+            <div class="summaryFilter">
+                <label>Filter <span class="glyphicon glyphicon-share-alt"></span></label>
 
-                    <label>Year: </label><select id="year"></select>
-                    <label>Month: </label><select id="month"></select>
-                    <label>Day: </label><select id="day"></select>
+                <label>Year: </label><select id="year"></select>
+                <label>Month: </label><select id="month"></select>
+                <label>Day: </label><select id="day"></select>
 
-                    <label for="category">Category: </label>
-                    <select id="category" th:field="*{category}" required="required">
-                        <option value="" hidden="hidden" selected="selected">Select One..</option>
-                        <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
-                    </select>
+                <label for="category">Category: </label>
+                <select id="category" th:field="*{category}" required="required">
+                    <option value="" hidden="hidden" selected="selected">Select One..</option>
+                    <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
+                </select>
 
-                    <div class="summaryFilterBtn">
-                        <button type="submit" class="button buttonGreen"><span class="glyphicon glyphicon-filter"></span>Filter</button>
-                    </div>
-
-                    <div class="summarySearchField">
-                        <span class="glyphicon glyphicon-search"></span>
-                        <input type="text" id="mySearch" onkeyup="searchInTable()" placeholder="Search for ..."/>
-                    </div>
-
+                <div class="summaryFilterBtn">
+                    <button type="submit" class="button buttonGreen"><span class="glyphicon glyphicon-filter"></span>Filter</button>
                 </div>
 
-                <hr/>
-
-                <div class="tableFixHead">
-                    <table class="customers" id="myTable">
-                        <thead>
-                        <tr>
-                            <th><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Date</th>
-                            <th><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Cards</th>
-                            <th><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp;Type</th>
-                            <th><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Category</th>
-                            <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Sum</th>
-                            <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Comment</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="item : ${items}">
-                            <td><span th:text="${item.creationDate}"> Date </span></td>
-                            <td><span th:text="${item.cards}"> Cards </span></td>
-                            <td><span th:text="${item.direction}"> Type </span></td>
-                            <td><span th:text="${item.category}"> Category </span></td>
-                            <td><span th:text="${item.quantity}"> Sum </span></td>
-                            <td><span th:text="${item.comment}"> Comment </span></td>
-                            <td><button class="button buttonGreen"><span class="glyphicon glyphicon-edit"></span></button></td>
-                            <td><button class="button buttonGreen"><span class="glyphicon glyphicon-trash"></span></button></td>
-                        </tr>
-                        </tbody>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                <div class="summarySearchField">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <input type="text" id="mySearch" onkeyup="searchInTable()" placeholder="Search for ..."/>
                 </div>
 
-                <hr/>
+            </div>
 
-                <table class="customers">
+            <hr/>
+
+            <div class="tableFixHead">
+                <table class="customers" id="myTable">
+                    <thead>
                     <tr>
-                        <th>Income Sum:</th>
-                        <th>Expense Sum:</th>
-                        <th>Difference Sum:</th>
+                        <th><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Date</th>
+                        <th><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Cards</th>
+                        <th><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp;Type</th>
+                        <th><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Category</th>
+                        <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Sum</th>
+                        <th><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;Comment</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${items}">
+                        <td><span th:text="${item.creationDate}"> Date </span></td>
+                        <td><span th:text="${item.cards}"> Cards </span></td>
+                        <td><span th:text="${item.direction}"> Type </span></td>
+                        <td><span th:text="${item.category}"> Category </span></td>
+                        <td><span th:text="${item.quantity}"> Sum </span></td>
+                        <td><span th:text="${item.comment}"> Comment </span></td>
+                        <td><button class="button buttonGreen"><span class="glyphicon glyphicon-edit"></span></button></td>
+                        <td><button class="button buttonGreen"><span class="glyphicon glyphicon-trash"></span></button></td>
+                    </tr>
+                    </tbody>
+                    <thead>
                     <tr>
-                        <td><span> 100000 Huf </span></td>
-                        <td><span> 100000 Huf </span></td>
-                        <td><span> 100000 Huf </span></td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
+                    </thead>
                 </table>
             </div>
 
+            <hr/>
+
+            <table class="customers">
+                <tr>
+                    <th>Income Sum:</th>
+                    <th>Expense Sum:</th>
+                    <th>Difference Sum:</th>
+                </tr>
+                <tr>
+                    <td><span> 100000 Huf </span></td>
+                    <td><span> 100000 Huf </span></td>
+                    <td><span> 100000 Huf </span></td>
+                </tr>
+            </table>
         </div>
+
     </div>
 </div>
 

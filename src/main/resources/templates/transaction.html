@@ -3,7 +3,9 @@
 
 <head>
     <title>Transaction - Family Budget</title>
+    <link rel="icon" href="/images/tree.ico" type="image/x-icon"/>
     <div th:replace="fragments/header :: header-css"/>
+
     <link rel="stylesheet" href="/static/css/transactionPage.css" th:href="@{/css/transactionPage.css}"/>
 </head>
 
@@ -11,150 +13,145 @@
 
 <div th:replace="fragments/header :: header"/>
 
-<!-- container -->
 <div class="container">
+    <div>
+        <h1>Transactions page</h1>
 
-    <div class="container">
-        <div>
-            <h1>Transactions page</h1>
+        <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
 
-            <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
+            <!-- Header -->
+            <div class="formHead">
+                <h3>Credit Card Income / Expense transactions</h3>
+                <h4>eg.: Cash, Credit Card, Kriszti Card, Zoli Card</h4>
+            </div>
+            <!-- Header -->
+            <hr/>
 
-                <!-- Header -->
-                <div class="formHead">
-                    <h3>Credit Card Income / Expense transactions</h3>
-                    <h4>eg.: Cash, Credit Card, Kriszti Card, Zoli Card</h4>
-                </div>
-                <!-- Header -->
-                <hr/>
+            <div>
+                <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}">text</p>
+                <p class="successMsg" th:if="${transactSaved}" th:text="${transMsg}">text</p>
 
+                <table class="customers">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><label for="quantity">Quantity: </label></td>
+                        <td><input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0" required="required"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="quantity">Type: </label></td>
+                        <td>
+                            <select id="direction" th:field="*{direction}" required="required">
+                                <option value="" hidden="hidden" selected="selected">Select One..</option>
+                                <option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="quantity">Cards: </label></td>
+                        <td>
+                            <select id="cards" th:field="*{cards}" required="required">
+                                <option value="" hidden="hidden" selected="selected">Select One..</option>
+                                <option th:each="card : ${cards}" th:value="${card}" th:text="${card}">Select</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="quantity">Category: </label></td>
+                        <td>
+                            <select id="transCategory" th:field="*{category}" required="required">
+                                <option value="" hidden="hidden" selected="selected">Select One..</option>
+                                <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="quantity">Comment: </label></td>
+                        <td>
+                            <textarea id="comment" th:field="*{comment}" name="comment" placeholder="You can leave comment here..."></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <hr/>
+            <!-- Buttons -->
+            <div class="formButton">
                 <div>
-                    <p class="errorMsg" th:if="${transactError}" th:text="${transMsg}">text</p>
-                    <p class="successMsg" th:if="${transactSaved}" th:text="${transMsg}">text</p>
-
-                    <table class="customers">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><label for="quantity">Quantity: </label></td>
-                            <td><input type="text" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0" required="required"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="quantity">Type: </label></td>
-                            <td>
-                                <select id="direction" th:field="*{direction}" required="required">
-                                    <option value="" hidden="hidden" selected="selected">Select One..</option>
-                                    <option th:each="direction : ${directions}" th:value="${direction}" th:text="${direction}">Select</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="quantity">Cards: </label></td>
-                            <td>
-                                <select id="cards" th:field="*{cards}" required="required">
-                                    <option value="" hidden="hidden" selected="selected">Select One..</option>
-                                    <option th:each="card : ${cards}" th:value="${card}" th:text="${card}">Select</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="quantity">Category: </label></td>
-                            <td>
-                                <select id="transCategory" th:field="*{category}" required="required">
-                                    <option value="" hidden="hidden" selected="selected">Select One..</option>
-                                    <option th:each="cat : ${category}" th:value="${cat}" th:text="${cat}">Select</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="quantity">Comment: </label></td>
-                            <td>
-                                <textarea id="comment" th:field="*{comment}" name="comment" placeholder="You can leave comment here..."></textarea>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <button type="submit" class="button buttonGreen">Save</button>
+                    <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" >Reset</button>
                 </div>
+            </div>
+            <!-- Buttons -->
+        </form>
 
-                <hr/>
-                <!-- Buttons -->
-                <div class="formButton">
-                    <div>
-                        <button type="submit" class="button buttonGreen">Save</button>
-                        <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" >Reset</button>
-                    </div>
-                </div>
-                <!-- Buttons -->
-            </form>
+        <br/>
 
-            <br/>
+        <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
 
-            <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
+            <!-- Header -->
+            <div class="formHead">
+                <h3>Benefit Cards transactions</h3>
+                <h4>eg.: Kriszti Szep Card, Zoli Szep Card</h4>
+            </div>
+            <!-- Header -->
+            <hr/>
 
-                <!-- Header -->
-                <div class="formHead">
-                    <h3>Benefit Cards transactions</h3>
-                    <h4>eg.: Kriszti Szep Card, Zoli Szep Card</h4>
-                </div>
-                <!-- Header -->
-                <hr/>
+            <div>
+                <table class="customers">
+                    <thead>
+                        <tr>
+                            <th>Benefit Type</th>
+                            <th>Benefit Actual Sum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Kriszti [Szep]</td>
+                            <td><input type="text" placeholder="1000" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Zoli [Szep]</td>
+                            <td><input type="text" placeholder="2000" required="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Erzsebet</td>
+                            <td><input type="text" placeholder="3000" required="required"/></td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
 
+            <hr/>
+            <!-- Buttons -->
+            <div class="formButton">
                 <div>
-                    <table class="customers">
-                        <thead>
-                            <tr>
-                                <th>Benefit Type</th>
-                                <th>Benefit Actual Sum</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Kriszti [Szep]</td>
-                                <td><input type="text" placeholder="1000" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Zoli [Szep]</td>
-                                <td><input type="text" placeholder="2000" required="required"/></td>
-                            </tr>
-                            <tr>
-                                <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Erzsebet</td>
-                                <td><input type="text" placeholder="3000" required="required"/></td>
-                            </tr>
-                        </tbody>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <button type="submit" class="button buttonGreen" disabled="disabled">Save</button>
+                    <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" disabled="disabled">Reset</button>
                 </div>
+            </div>
+            <!-- Buttons -->
+        </form>
 
-                <hr/>
-                <!-- Buttons -->
-                <div class="formButton">
-                    <div>
-                        <button type="submit" class="button buttonGreen" disabled="disabled">Save</button>
-                        <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" disabled="disabled">Reset</button>
-                    </div>
-                </div>
-                <!-- Buttons -->
-            </form>
-
-        </div>
     </div>
-
 </div>
 
 <!-- footer -->
