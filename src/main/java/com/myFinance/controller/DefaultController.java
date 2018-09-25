@@ -45,7 +45,7 @@ public class DefaultController {
         model.addAttribute("differ", diff);
 
         log.info(">> [Controller|home] - Attributes added, loading home...");
-        return "/home";
+        return "home";
     }
 
     /**
@@ -63,7 +63,7 @@ public class DefaultController {
         model.addAttribute("category",   TransactionItem.Category.values());
 
         log.info(">> [Controller|transaction] - Attributes added, loading transactions...");
-        return "/transaction";
+        return "transaction";
     }
 
     /**
@@ -105,14 +105,14 @@ public class DefaultController {
         model.addAttribute("items",items);
 
         log.info(">> [Controller|summary] - Attributes added, loading transaction...");
-        return "/summary";
+        return "summary";
     }
 
     // Login form
     @RequestMapping("/login")
     public String login() {
         log.info("Login PAGE");
-        return "/login";
+        return "login";
     }
 
     // Login form with error
@@ -120,37 +120,37 @@ public class DefaultController {
     public String loginError(Model model) {
         log.info("Login error PAGE");
         model.addAttribute("loginError", true);
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/admin")
     public String admin() {
         log.info("ADMIN PAGE");
-        return "/admin";
+        return "admin";
     }
 
     @RequestMapping("/user")
     public String user() {
         log.info("USER PAGE");
-        return "/user";
+        return "user";
     }
 
     @RequestMapping("/about")
     public String about() {
         log.info("About PAGE");
-        return "/about";
+        return "about";
     }
 
     @RequestMapping("/signup")
     public String signup() {
         log.info("Sign Up PAGE");
-        return "/signup";
+        return "signup";
     }
 
     @RequestMapping("/403")
     public String error403() {
         log.info("403 PAGE");
-        return "/error/403";
+        return "error/403";
     }
 
 }

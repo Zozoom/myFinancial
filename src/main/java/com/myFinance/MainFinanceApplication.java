@@ -15,7 +15,7 @@ public class MainFinanceApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
 
-    private static String myUrl = "http://localhost:8080/";
+    private static String myUrl = "http://localhost:80/";
 
     public static void main(String[] args) {
         SpringApplication.run(MainFinanceApplication.class, args);
