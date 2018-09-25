@@ -9,8 +9,8 @@ select {
     font-size: 13px;
     font-weight:bold;
     cursor: pointer;
-    background-color: rgba(76, 175, 80, 0.88);
-    border: 1px solid green;
+    background-color: #008501e8;
+    border: 1px solid #000000c4;
     border-radius: 4px;
     transition-duration: 0.4s;
     overflow: hidden;
@@ -34,16 +34,16 @@ input{
     font-size: 15px;
     font-weight:bold;
     text-align: left;
-    background-color: rgba(76, 175, 80, 0.9);
-    border: 1px solid green;
+    background-color: #008501e8;
+    border: 1px solid #000000c4;
     border-radius: 4px;
     transition-duration: 0.4s;
 }
 
 textarea{
     resize: none;
-    background-color: #4caf50c7;
-    border: 1px solid green;
+    background-color: #008501e8;
+    border: 1px solid #000000c4;
     color: white;
     font-weight:bold;
     width: 300px;
@@ -63,8 +63,8 @@ textarea{
     width:100%;
     padding: 10px;
     margin: 10px auto;
-    background-color: #ecf5ee5c;
-    border: 1.4px solid #808080;
+    background-color: #00000045;
+    border: 1.4px solid #ffffffc4;
     border-radius: 10px;
     transition-duration: 0.4s;
 }
@@ -92,8 +92,8 @@ textarea{
 }
 
 .formHead, .formButton  {
-    background-color: #4caf5057;
-    border: 0.5px solid #00800054;
+    background-color: #23ba10ad;
+    border: 0.5px solid #ffffff54;
     border-radius: 5px;
 }
 

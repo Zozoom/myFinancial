@@ -4,14 +4,14 @@
 
 body{
     font-family: 'PT Sans', sans-serif;
-    background: #0000002e url("/images/gb1.jpg") no-repeat center;
+    background: #0000002e url("/images/myfinance.jpg") no-repeat center;
     min-height: 1000px;
     background-size: cover;
     position: relative;
 }
 
 footer{
-    background-color: #78d63ac9;
+    background-color: #20791d87;
     border: 2px solid #00000036;
     border-radius: 8px;
     text-shadow: -1px 0 #00000078, 0 1px #00000078, 1px 0 #00000078, 0 -1px #00000078;
@@ -28,9 +28,16 @@ footer{
 }
 
 hr{
-    border: 1px solid #2a2b2b;
+    border: 1px solid #ffffffe0;
 }
 
+h1, h2, h3, h4, h5{
+    color: white;
+}
+
+/*****************************
+ * Container Styles
+ *****************************/
 .container{
     max-width: 1200px;
     min-width: 900px;
@@ -38,8 +45,11 @@ hr{
     padding-top: 3%;
 }
 
+/*****************************
+ * NavBar Styles
+ *****************************/
 .navbar {
-    background-color: #78d63ac9;
+    background-color: #20791d87;
     border: 2px solid #00000036;
     text-shadow: -1px 0 #00000078, 0 1px #00000078, 1px 0 #00000078, 0 -1px #00000078;
     border-radius: 8px;
@@ -92,7 +102,7 @@ hr{
  * General Message Style
  *****************************/
 .errorMsg{
-    background-color: #af3930;
+    background-color: #d2392dcf;
     border: 1px solid #80000a;
     font-size: 14px;
     color: white;
@@ -106,8 +116,8 @@ hr{
 }
 
 .successMsg{
-    background-color: #4baf4f;
-    border: 1px solid #009909;
+    background-color: #38c72fc7;
+    border: 1px solid #107316;
     font-size: 14px;
     color: white;
     text-align:center;
@@ -123,9 +133,8 @@ hr{
  * Buttons
  *****************************/
 .button {
-    background-color: #4CAF50;
     color: white;
-    border: 1px solid green;
+    border: 1px solid #00000059;
     border-radius: 4px;
     padding: 4px;
     text-align: center;
@@ -140,7 +149,7 @@ hr{
 }
 
 .buttonGreen {
-    background-color: rgba(76, 175, 80, 0.88);
+    background-color: #1ab40aba;
     color: white;
 }
 
@@ -150,12 +159,12 @@ hr{
 }
 
 .buttonYellow {
-    background-color: rgba(255, 177, 0, 0.88);
+    background-color: rgba(255, 177, 0, 0.79);
     color: white;
 }
 
 .buttonYellow:hover {
-    background-color: #ffe4a3bf;
+    background-color: #eccf87cc;
     color: black;
 }
 

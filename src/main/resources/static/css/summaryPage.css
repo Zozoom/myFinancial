@@ -8,8 +8,8 @@ select {
     font-size: 13px;
     font-weight:bold;
     cursor: pointer;
-    background-color: rgba(76, 175, 80, 0.88);
-    border: 1px solid green;
+    background-color: #116b0994;
+    border: 1px solid #ffffffc4;
     border-radius: 4px;
     transition-duration: 0.4s;
     overflow: hidden;
@@ -32,15 +32,15 @@ option{
     width:100%;
     padding: 10px;
     margin: 10px auto;
-    background-color: #4caf5069;
-    border: 1px solid green;
+    background-color: #10bf0094;
+    border: 1.4px solid #ffffffc4;
     border-radius: 4px;
     transition-duration: 0.4s;
 }
 
 .summaryContainer{
-    background-color: #ecf5ee5c;
-    border: 1.4px solid #808080;
+    background-color: #00000045;
+    border: 1.4px solid #ffffffc4;
     border-radius: 10px;
     transition-duration: 0.4s;
     padding: 10px;
@@ -66,8 +66,8 @@ option{
 }
 
 .summarySearchField input {
-    background-color: rgba(76, 175, 80, 0.88);
-    border: 1px solid green;
+    background-color: #116b0994;
+    border: 1.4px solid #ffffffc4;
     padding:5px;
     color:white;
     width: 250px;

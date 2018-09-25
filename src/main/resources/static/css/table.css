@@ -38,7 +38,7 @@
 }
 
 .customers td, .customers th {
-    border: 1px solid #ddd;
+    border: 0px solid #000;
     padding: 8px;
     text-align: center;
     font-weight: bold;
@@ -49,18 +49,19 @@
 }
 
 .customers tr:nth-child(even){
-    background-color: #dee8e0;
+    background-color: #e0e0e0;
 }
 
 .customers tr:hover {
-    background-color: #4caf5069;
+    background-color: #006e00c9;
+    color:white;
 }
 
 .customers th {
     padding: 6px;
     text-align: center;
     font-size: 14px;
-    background-color: #4CAF50;
+    background-color: #1a8411db;
     color: white;
 }
 
