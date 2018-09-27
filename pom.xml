@@ -8,14 +8,14 @@
 	<version>0.1.19</version>
 	<packaging>jar</packaging>
 
-	<name>mainFinance</name>
-	<description>Demo project for Spring Boot</description>
+	<name>FamilyBudget</name>
+	<description>FamilyBudget Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.15.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
