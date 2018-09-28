@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.SQLOutput;
 
 @SpringBootApplication
 public class MainFinanceApplication {
@@ -33,7 +34,15 @@ public class MainFinanceApplication {
         log.info("||                                 Copyright 2018                                         ||");
         log.info("||////////////////////////////////////////////////////////////////////////////////////////||");
         log.info(">> [FinancApplication.main] - Starting Application ... Please Stand by...");
-        openBrowser(myUrl);
+
+
+        try {
+            openBrowser(myUrl);
+        }
+        catch (Exception e){
+            System.out.println("\nThere was an error: "+e+"\n");
+        }
+
     }
 
     private static void openBrowser(String url) {
