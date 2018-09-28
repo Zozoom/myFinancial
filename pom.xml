@@ -4,7 +4,7 @@
 
 	<groupId>com.myFinance</groupId>
 	<artifactId>mainFinance</artifactId>
-	<version>0.1.19</version>
+	<version>0.1.19-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>FamilyBudget</name>
@@ -18,7 +18,7 @@
 	</parent>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/Zozoom/myFinancial.git</developerConnection>
+		<developerConnection>scm:git:${env.GIT_USERNAME}:${env.GIT_PASSWORD}@https://github.com/Zozoom/myFinancial.git</developerConnection>
 	  <tag>mainFinance-0.1.19</tag>
   </scm>
 
