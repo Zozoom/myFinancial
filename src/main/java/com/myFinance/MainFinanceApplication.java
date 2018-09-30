@@ -24,12 +24,24 @@ public class MainFinanceApplication {
 
     @Value("${spring.profiles.active}")
     public void setProfile(String profile) {
-        MainFinanceApplication.profile = profile.replace("\"","").toUpperCase();
+        try {
+            log.info("Active Profile:           [" + profile + "]");
+            MainFinanceApplication.profile = profile.replace("\"","").toUpperCase();
+        }
+        catch (Exception e){
+            log.error("\nThere was an error: "+e+"\n");
+        }
     }
 
     @Value("${server.port}")
     public void setServerPort(String serverPort) {
-        MainFinanceApplication.serverPort = serverPort.replace("\"","").toUpperCase();
+        try {
+            log.info("Server Port:              [" + serverPort + "]");
+            MainFinanceApplication.serverPort = serverPort.replace("\"","").toUpperCase();
+        }
+        catch (Exception e){
+            log.error("\nThere was an error: "+e+"\n");
+        }
     }
 
     /**
@@ -59,7 +71,7 @@ public class MainFinanceApplication {
             openBrowser(myUrl);
         }
         catch (Exception e){
-            log.info("\nThere was an error: "+e+"\n");
+            log.error("\nThere was an error: "+e+"\n");
         }
 
     }
