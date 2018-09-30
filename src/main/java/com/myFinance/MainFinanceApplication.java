@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
+@PropertySource("classpath:application.properties")
 public class MainFinanceApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
@@ -25,7 +27,7 @@ public class MainFinanceApplication {
     @Value("${spring.profiles.active}")
     public void setProfile(String profile) {
         try {
-            log.info("Active Profile:           [" + profile + "]");
+            log.info(">> Active Profile:           [" + profile + "]");
             MainFinanceApplication.profile = profile.replace("\"","").toUpperCase();
         }
         catch (Exception e){
@@ -36,7 +38,7 @@ public class MainFinanceApplication {
     @Value("${server.port}")
     public void setServerPort(String serverPort) {
         try {
-            log.info("Server Port:              [" + serverPort + "]");
+            log.info(">> Server Port:              [" + serverPort + "]");
             MainFinanceApplication.serverPort = serverPort.replace("\"","").toUpperCase();
         }
         catch (Exception e){
