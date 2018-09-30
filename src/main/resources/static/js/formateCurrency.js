@@ -20,7 +20,7 @@
  * */
     function thousandSeparator() {
 
-        if(isNumberKey(element) && element.value.length <=12 && element.value != null && element.value !== ""){
+        if(element.value.length <=12 && element.value != null && element.value !== ""){
 
             console.log("Size: "+element.value.length);
 

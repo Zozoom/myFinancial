@@ -35,14 +35,35 @@ public class DefaultController {
     public String home(Model model) {
         log.info(">> [Controller|home] - Getting to the Home page.");
 
-        int income = tis.getAllIncome();
-        int expense = tis.getAllExpense();
+        // Last Month Transactions
+        int k_BudgeLast = tis.getkBudgeLast();
+        int z_BudgeLast = tis.getZBudgeLast();
+        int c_BudgeLast = tis.getcBudgeLast();
+        int s_BudgeLast = tis.getsBudgeLast();
 
-        model.addAttribute("incomes", income);
-        model.addAttribute("expense", expense);
+        model.addAttribute("k_BudgeLast", k_BudgeLast);
+        model.addAttribute("z_BudgeLast", z_BudgeLast);
+        model.addAttribute("c_BudgeLast", c_BudgeLast);
+        model.addAttribute("s_BudgeLast", s_BudgeLast);
 
-        int diff = income - expense;
-        model.addAttribute("differ", diff);
+        int sumLast = (k_BudgeLast+z_BudgeLast);
+        model.addAttribute("summaryLast", sumLast);
+
+        // All the Transactions
+        int k_Budge = tis.getkBudge();
+        int z_Budge = tis.getZBudge();
+        int c_Budge = tis.getcBudge();
+        int s_Budge = tis.getsBudge();
+
+        model.addAttribute("k_Budge", k_Budge);
+        model.addAttribute("z_Budge", z_Budge);
+        model.addAttribute("c_Budge", c_Budge);
+        model.addAttribute("s_Budge", s_Budge);
+
+        int sum = (k_Budge+z_Budge);
+        model.addAttribute("summary", sum);
+
+        model.addAttribute("actualDate", tis.getActualYearAndMonth());
 
         log.info(">> [Controller|home] - Attributes added, loading home...");
         return "home";
@@ -100,6 +121,7 @@ public class DefaultController {
         log.info(">> [Controller|summary] - Getting to the Summary page.");
 
         List<TransactionItem> items = tis.getAllTransaction();
+//        List<TransactionItem> items = tis.getLastXTransaction();
 
         model.addAttribute("category", TransactionItem.Category.values());
         model.addAttribute("items",items);

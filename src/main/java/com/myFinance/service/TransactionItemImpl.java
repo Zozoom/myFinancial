@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionItemImpl implements TransactionItemService{
@@ -19,9 +21,12 @@ public class TransactionItemImpl implements TransactionItemService{
 
     private TransactionRepository transactionRepository;
 
+    private List<TransactionItem> items;
+
     @Autowired
     public TransactionItemImpl(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
+        this.items = this.getAllTransaction();
     }
 
     /**
@@ -36,13 +41,26 @@ public class TransactionItemImpl implements TransactionItemService{
         // Cut out the splitter from the quantity.
         item.setQuantity(item.getQuantity().replace(",",""));
 
-        if(Integer.parseInt(item.getQuantity()) <= 0){
+        int quantity = Integer.parseInt(item.getQuantity());
+
+        if(quantity <= 0){
             log.error(">> [Impl|makeTransaction] - Item quantity cannot be ZERO or less.");
             return false;
         }
 
+        if (item.getDirection().equals("Expense")){
+            quantity = quantity * -1;
+            log.info("Quantity: "+quantity);
+        }
+
+        item.setQuantity(String.valueOf(quantity));
+
         Date createDate = new Date();
-        item.setCreationDate(createDate);
+        String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(createDate);
+
+        item.setCreationDate(modifiedDate);
+        item.setItemCreationDate(createDate);
+
         log.info(">> [Impl|makeTransaction] - Item creation date: {}", createDate);
 
         item.setCurrency("Huf");
@@ -55,6 +73,8 @@ public class TransactionItemImpl implements TransactionItemService{
         transactionRepository.save(item);
         log.info(">> [Impl|makeTransaction] - Transaction created with the following number: {}", item.getTransactionNumber());
 
+        items = getAllTransaction();
+
         return true;
     }
 
@@ -66,7 +86,6 @@ public class TransactionItemImpl implements TransactionItemService{
 
         log.info(">> [Impl|getAllIncome] - Getting a Sum about the Incomes.");
 
-        List<TransactionItem> items = getAllTransaction();
         int sum = 0;
 
         for (TransactionItem item : items) {
@@ -88,7 +107,6 @@ public class TransactionItemImpl implements TransactionItemService{
 
         log.info(">> [Impl|getAllExpense] - Getting a Sum about the Expenses.");
 
-        List<TransactionItem> items = getAllTransaction();
         int sum = 0;
 
         for (TransactionItem item : items) {
@@ -100,6 +118,206 @@ public class TransactionItemImpl implements TransactionItemService{
         log.info(">> [Impl|getAllExpense] - The summarized quantity is: -{}", sum);
 
         return sum;
+    }
+
+    /*********************************************************
+     *
+     * TODO NEED TO REFACTOR THE WHOLE SECTOR - SECTOR START
+     *
+     * *******************************************************/
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getkBudge() {
+        log.info(">> [Impl|getkBudge] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : items) {
+            if(item.getCards().equals("Kriszti")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getkBudge] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getZBudge() {
+        log.info(">> [Impl|getZBudge] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : items) {
+            if(item.getCards().equals("Zoli")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getZBudge] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getcBudge() {
+        log.info(">> [Impl|getcBudge] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : items) {
+            if(item.getCards().equals("Credit")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getcBudge] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getsBudge() {
+        log.info(">> [Impl|getsBudge] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : items) {
+            if(item.getCards().equals("Savings")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getsBudge] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getkBudgeLast() {
+        log.info(">> [Impl|getkBudgeLast] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : getLasMonthItems()) {
+            if(item.getCards().equals("Kriszti")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getkBudgeLast] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getZBudgeLast() {
+        log.info(">> [Impl|getZBudgeLast] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : getLasMonthItems()) {
+            if(item.getCards().equals("Zoli")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getZBudgeLast] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getcBudgeLast() {
+        log.info(">> [Impl|getcBudgeLast] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : getLasMonthItems()) {
+            if(item.getCards().equals("Credit")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getcBudgeLast] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * Todo Need to be refactored these sections.
+     * */
+    @Override
+    public Integer getsBudgeLast() {
+        log.info(">> [Impl|getsBudgeLast] - Getting a Sum about the Expenses.");
+
+        int sum = 0;
+
+        for (TransactionItem item : getLasMonthItems()) {
+            if(item.getCards().equals("Savings")){
+                sum = sum + Integer.parseInt(item.getQuantity());
+            }
+        }
+
+        log.info(">> [Impl|getsBudgeLast] - The summarized quantity is: -{}", sum);
+
+        return sum;
+    }
+
+    /**
+     * This method get back with a filtered Item list which contains the actual MONTH
+     * transactions only.
+     * */
+    private List<TransactionItem> getLasMonthItems(){
+
+        log.info(">> [Impl|getLasMonthItems] - Getting the last month transactions from all the transactions.");
+
+        String containedDate = getActualYearAndMonth();
+
+        log.info(">> [Impl|getLasMonthItems] - Getting transactions by the actual date: "+containedDate);
+
+        return items.stream().filter(myitem -> myitem.getCreationDate().contains(containedDate)).collect(Collectors.toList());
+    }
+
+    /*********************************************************
+     *
+     * TODO NEED TO REFACTOR THE WHOLE SECTOR - SECTOR END
+     *
+     * *******************************************************/
+
+    /**
+     * Get back the Actual Year and Month
+     * */
+    public String getActualYearAndMonth(){
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+
+        return year+"-"+((month > 10) ? month : "0"+month);
     }
 
     /**
@@ -131,10 +349,24 @@ public class TransactionItemImpl implements TransactionItemService{
     public List<TransactionItem> getAllTransaction() {
         log.info(">> [Impl|getAllTransaction] - Getting All the transaction... it can take time.");
 
-        List<TransactionItem> myList = (List<TransactionItem>) transactionRepository.findAll();
+        List<TransactionItem> myList = transactionRepository.findAll();
         Collections.reverse(myList);
 
         log.info(">> [Impl|getAllTransaction] - All transaction counts: [" + myList.size()+"] elements.");
+        return myList;
+    }
+
+    @Override
+    public List<TransactionItem> getLastXTransaction() {
+        log.info(">> [Impl|getLastXTransaction] - Getting All the transaction... it can take time.");
+
+        List<TransactionItem> myList = transactionRepository.getLastHundredElements();
+
+        for (TransactionItem item : myList) {
+            System.out.println("\n"+item.toString());
+        }
+
+        log.info(">> [Impl|getLastXTransaction] - All transaction counts: [" + myList.size()+"] elements.");
         return myList;
     }
 

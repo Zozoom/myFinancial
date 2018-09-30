@@ -33,8 +33,11 @@ public class TransactionItem {
     @Column(name = "Quantity", nullable=false, length = 8)
     private String quantity;
 
-    @Column(name = "Date", nullable=false)
-    private Date creationDate;
+    @Column(name = "CreationDate", nullable=false)
+    private String creationDate;
+
+    @Column(name = "ItemCreationDate", nullable=false)
+    private Date itemCreationDate;
 
     /**
      * Direction of the Transaction
@@ -136,6 +139,14 @@ public class TransactionItem {
         this.id = id;
     }
 
+    public int getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(int transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
     public String getDirection() {
         return direction;
     }
@@ -152,28 +163,12 @@ public class TransactionItem {
         this.currency = currency;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getComment() {
+        return comment;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public int getTransactionNumber() {
-        return transactionNumber;
-    }
-
-    public void setTransactionNumber(int transactionNumber) {
-        this.transactionNumber = transactionNumber;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getCategory() {
@@ -192,12 +187,28 @@ public class TransactionItem {
         this.cards = cards;
     }
 
-    public String getComment() {
-        return comment;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getItemCreationDate() {
+        return itemCreationDate;
+    }
+
+    public void setItemCreationDate(Date itemCreationDate) {
+        this.itemCreationDate = itemCreationDate;
     }
 
     @Override
@@ -211,7 +222,8 @@ public class TransactionItem {
                 ", category='" + category + '\'' +
                 ", cards='" + cards + '\'' +
                 ", quantity='" + quantity + '\'' +
-                ", creationDate=" + creationDate +
+                ", creationDate='" + creationDate + '\'' +
+                ", itemCreationDate=" + itemCreationDate +
                 '}';
     }
 }
