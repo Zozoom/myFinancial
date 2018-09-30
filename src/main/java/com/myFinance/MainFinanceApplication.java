@@ -14,7 +14,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
-@PropertySource("classpath:application.properties")
 public class MainFinanceApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
