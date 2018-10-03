@@ -20,15 +20,12 @@ public class MainFinanceApplication {
      * Get values from properties file.
      * */
     private static String profile;
-    private static String serverPort;
+    private static int serverPort;
 
     @Value("${spring.profiles.active}")
     public void setProfile(String profile) {
         try {
             log.info(">> Active Profile:           [" + profile + "]");
-            if(serverPort.contains("\"")){
-                MainFinanceApplication.profile = profile.replace("\"","");
-            }
             MainFinanceApplication.profile = profile.toUpperCase();
         }
         catch (Exception e){
@@ -38,13 +35,10 @@ public class MainFinanceApplication {
     }
 
     @Value("${server.port}")
-    public void setServerPort(String serverPort) {
+    public void setServerPort(int serverPort) {
         try {
             log.info(">> Server Port:              [" + serverPort + "]");
-            if(serverPort.contains("\"")){
-                MainFinanceApplication.serverPort = serverPort.replace("\"","");
-            }
-            MainFinanceApplication.serverPort = serverPort.toUpperCase();
+            MainFinanceApplication.serverPort = serverPort;
         }
         catch (Exception e){
             log.error(">> There was an error: \n");
