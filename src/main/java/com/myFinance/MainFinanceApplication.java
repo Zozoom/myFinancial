@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.LocalServerPort;
-import org.springframework.context.annotation.PropertySource;
 
 import java.awt.*;
 import java.io.IOException;
@@ -36,7 +34,6 @@ public class MainFinanceApplication {
     }
 
     @Value("${server.port}")
-    @LocalServerPort
     public void setServerPort(String serverPort) {
         try {
             log.info(">> Server Port:              [" + serverPort + "]");
@@ -70,8 +67,12 @@ public class MainFinanceApplication {
         log.info(">> [FinancApplication.main] - Starting Application ... Please Stand by...");
 
         try {
-            String myUrl = "http://localhost:"+serverPort;
-            openBrowser(myUrl);
+            if (Desktop.isDesktopSupported()){
+                String myUrl = "http://localhost:"+serverPort;
+                openBrowser(myUrl);
+            }
+            else
+                log.info("There is no Desktop so -> No Browser.");
         }
         catch (Exception e){
             log.error("\nThere was an error: "+e+"\n");

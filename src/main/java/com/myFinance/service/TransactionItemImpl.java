@@ -317,7 +317,7 @@ public class TransactionItemImpl implements TransactionItemService{
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
 
-        return year+"-"+((month > 10) ? month : "0"+month);
+        return year+"-"+((month >= 10) ? month : "0"+month);
     }
 
     /**
