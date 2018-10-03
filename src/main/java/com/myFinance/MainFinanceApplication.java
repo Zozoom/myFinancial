@@ -67,12 +67,8 @@ public class MainFinanceApplication {
         log.info(">> [FinancApplication.main] - Starting Application ... Please Stand by...");
 
         try {
-            if (Desktop.isDesktopSupported()){
-                String myUrl = "http://localhost:"+serverPort;
-                openBrowser(myUrl);
-            }
-            else
-                log.info("There is no Desktop so -> No Browser.");
+            String myUrl = "http://localhost:"+serverPort;
+            openBrowser(myUrl);
         }
         catch (Exception e){
             log.error("\nThere was an error: "+e+"\n");
