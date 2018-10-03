@@ -32,11 +32,12 @@ public class MainFinanceApplication {
             MainFinanceApplication.profile = profile.toUpperCase();
         }
         catch (Exception e){
-            log.error("\nThere was an error: "+e+"\n");
+            log.error(">> There was an error: \n");
+            e.printStackTrace();
         }
     }
 
-    @Value("${server_port}")
+    @Value("${server.port}")
     public void setServerPort(String serverPort) {
         try {
             log.info(">> Server Port:              [" + serverPort + "]");
@@ -46,7 +47,8 @@ public class MainFinanceApplication {
             MainFinanceApplication.serverPort = serverPort.toUpperCase();
         }
         catch (Exception e){
-            log.error("\nThere was an error: "+e+"\n");
+            log.error(">> There was an error: \n");
+            e.printStackTrace();
         }
     }
 
