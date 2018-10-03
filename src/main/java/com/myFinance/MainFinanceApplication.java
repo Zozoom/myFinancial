@@ -1,9 +1,7 @@
 package com.myFinance;
 
-import org.omg.CORBA.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -52,9 +50,6 @@ public class MainFinanceApplication {
         }
     }
 
-    @Value("${local.server.port}")
-    protected static String localPort;
-
     /**
      * The Main method itself.
      * */
@@ -69,7 +64,6 @@ public class MainFinanceApplication {
         log.info("******************* Family Budget Application Environment Variables *************************");
         log.info("Active Profile:           [" + profile + "]");
         log.info("Server Port:              [" + serverPort + "]");
-        log.info("Local Server Port:        [" + localPort + "]");
         log.info(profile+"_DB_URL:          [" + System.getenv(profile+"_DB_URL") + "]");
         log.info(profile+"_DB_USER:         [" + System.getenv(profile+"_DB_USER") + "]");
         log.info(profile+"_DB_PASSWORD:     [" + System.getenv(profile+"_DB_PASSWORD") + "]");
