@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
+@PropertySource({"application.properties", "application-dev.properties", "application-qa.properties", "application-prod.properties"})
 public class MainFinanceApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MainFinanceApplication.class);
