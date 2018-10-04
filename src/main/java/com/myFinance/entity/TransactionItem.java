@@ -98,6 +98,7 @@ public class TransactionItem {
         Entertainment("Entertainment"),
         House("House"),
         CarGas("CarGas"),
+        Loan("Loan"),
         CarMaintenance("CarMaintenance"),
         Other("Other");
 
