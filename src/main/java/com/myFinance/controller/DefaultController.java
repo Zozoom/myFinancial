@@ -32,6 +32,15 @@ public class DefaultController {
      * Default Home Page
      * */
     @RequestMapping("/")
+    public String defaultHome() {
+        log.info("About Page");
+        return "about";
+    }
+
+    /**
+     * Default Home Page
+     * */
+    @RequestMapping("/home")
     public String home(Model model) {
         log.info(">> [Controller|home] - Getting to the Home page.");
 

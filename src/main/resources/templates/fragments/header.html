@@ -21,8 +21,7 @@
                 <a class="navbar-brand" href="/about">Family Budget</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-
+                <li><a href="/home">Home</a></li>
                 <li><a href="/transaction">Transactions</a></li>
                 <li><a href="/summary">Summary</a></li>
 
@@ -37,6 +36,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
             </ul>
         </div>
     </nav>

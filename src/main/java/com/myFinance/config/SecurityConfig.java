@@ -21,9 +21,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/home","/login","/about","/transaction","/summary","/transaction/make").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER")
+//                .antMatchers("/","/home","/login","/about","/transaction","/summary","/transaction/make").permitAll()
+                .antMatchers("/","/login","/about").permitAll()
+                .antMatchers("/admin/**","/home","/transaction","/summary","/transaction/make").hasAnyRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -42,9 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("user").password("user").roles("USER")
+                .withUser("kriszti").password("Tappancs18").roles("ADMIN")
                 .and()
-                .withUser("admin").password("admin").roles("ADMIN");
+                .withUser("zoli").password("Tappancs18").roles("ADMIN");
     }
 
 
