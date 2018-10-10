@@ -17,10 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
-    @Value("security.user.name")
+    @Value("${security.user.name}")
     String user;
 
-    @Value("security.user.password")
+    @Value("${security.user.password}")
     String password;
 
     @Override
