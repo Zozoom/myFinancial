@@ -1,0 +1,71 @@
+/*****************************
+ * General Styles
+ *****************************/
+input{
+    display: inline-block;
+    color:white;
+    width: 45%;
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight:bold;
+    text-align: left;
+    background-color: #008501e8;
+    border: 1px solid #000000c4;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+
+/*****************************
+ * General Input Form Styles
+ *****************************/
+.formLogin {
+    font-weight:bold;
+    text-align: center;
+    display: block;
+    width: 50%;
+    padding: 10px;
+    margin: 50px auto;
+    background-color: #00000045;
+    border: 1.4px solid #000000c4;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+
+.formLogin h1, h2, h3, h4{
+    font-weight:bold;
+    margin-top: 10px;
+}
+
+.formLogin h1{
+    font-size: 25px;
+}
+
+.formLogin h2{
+    font-size: 20px;
+}
+
+.formLogin h3{
+    font-size: 16px;
+}
+
+.formLogin h4{
+    font-size: 14px;
+    font-weight:bold;
+}
+
+.formLogin label{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.formHead, .formButton  {
+    border-radius: 5px;
+}
+
+.formButton .button{
+    font-size: 19px;
+    width: 40%;
+    height: 50px;
+    margin: 10px;
+}

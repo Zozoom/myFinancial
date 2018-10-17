@@ -33,8 +33,8 @@ public class DefaultController {
      * */
     @RequestMapping("/")
     public String defaultHome() {
-        log.info("About Page");
-        return "about";
+        log.info("Login Page");
+        return "login";
     }
 
     /**

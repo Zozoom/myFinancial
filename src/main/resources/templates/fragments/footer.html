@@ -9,8 +9,9 @@
         <!-- this is footer -->
         &copy; 2018 MyFamilyBudget.com
         <span sec:authorize="isAuthenticated()">
-            | Logged user: <span sec:authentication="name"></span> |
-            Roles: <span sec:authentication="principal.authorities"></span> |
+            <span> | Version: 0.1.21-SNAPSHOT</span>
+            <!--| Logged user: <span sec:authentication="name"></span> |-->
+            <!--Roles: <span sec:authentication="principal.authorities"></span> |-->
             <!--<a th:href="@{/logout}">Sign Out</a>-->
         </span>
 
