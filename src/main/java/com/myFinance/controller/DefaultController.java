@@ -1,6 +1,7 @@
 package com.myFinance.controller;
 
 import com.myFinance.MainFinanceApplication;
+import com.myFinance.entity.BenefitItem;
 import com.myFinance.entity.TransactionItem;
 import com.myFinance.service.TransactionItemService;
 import org.slf4j.Logger;
@@ -50,6 +51,8 @@ public class DefaultController {
         int c_BudgeLast = tis.getcBudgeLast();
         int s_BudgeLast = tis.getsBudgeLast();
 
+        BenefitItem benItem = tis.getBenefit();
+
         model.addAttribute("k_BudgeLast", k_BudgeLast);
         model.addAttribute("z_BudgeLast", z_BudgeLast);
         model.addAttribute("c_BudgeLast", c_BudgeLast);
@@ -72,6 +75,11 @@ public class DefaultController {
         int sum = (k_Budge+z_Budge);
         model.addAttribute("summary", sum);
 
+        // Benefit Transactions
+        model.addAttribute("szep1",benItem.getSzepCard1());
+        model.addAttribute("szep2",benItem.getSzepCard2());
+        model.addAttribute("bozsi",benItem.getErzsiCard());
+
         model.addAttribute("actualDate", tis.getActualYearAndMonth());
 
         log.info(">> [Controller|home] - Attributes added, loading home...");
@@ -86,8 +94,10 @@ public class DefaultController {
         log.info(">> [Controller|transaction] - Getting to the Transaction page.");
 
         TransactionItem transactionItem = new TransactionItem();
+        BenefitItem benefitItem = new BenefitItem();
 
         model.addAttribute("item",       transactionItem);
+        model.addAttribute("benefitItem",       benefitItem);
         model.addAttribute("directions", TransactionItem.Direction.values());
         model.addAttribute("cards",      TransactionItem.Cards.values());
         model.addAttribute("category",   TransactionItem.Category.values());
@@ -116,6 +126,31 @@ public class DefaultController {
         }
         else{
             log.warn(">> [Controller|transactionPersist] - There was an error: " + errorMsg);
+            redirectAttrs.addFlashAttribute("transactError", true);
+            redirectAttrs.addFlashAttribute("transMsg", errorMsg);
+            return "redirect:/transaction";
+        }
+    }
+
+    /**
+     * Set Benefit
+     * */
+    @RequestMapping(value = "/benefit/make", method = RequestMethod.POST)
+    public String benefitPersist(@ModelAttribute BenefitItem benefitItem, final RedirectAttributes redirectAttrs) {
+        log.info(">> [Controller|benefitPersist] - Called the transactionPersist endpoint.");
+
+        // Define error message.
+        String errorMsg = "This is invalid!";
+        String succesMsg = "Transaction successfully saved.";
+
+        if(tis.setBenefit(benefitItem)){
+            log.info(">> [Controller|benefitPersist] - Transaction successfully saved.");
+            redirectAttrs.addFlashAttribute("transactSaved", true);
+            redirectAttrs.addFlashAttribute("transMsg", succesMsg);
+            return "redirect:/transaction";
+        }
+        else{
+            log.warn(">> [Controller|benefitPersist] - There was an error: " + errorMsg);
             redirectAttrs.addFlashAttribute("transactError", true);
             redirectAttrs.addFlashAttribute("transMsg", errorMsg);
             return "redirect:/transaction";

@@ -1,5 +1,6 @@
 package com.myFinance.service;
 
+import com.myFinance.entity.BenefitItem;
 import com.myFinance.entity.TransactionItem;
 
 import java.util.List;
@@ -18,6 +19,13 @@ public interface TransactionItemService {
     Integer getAllIncome ();
 
     Integer getAllExpense ();
+
+    /**
+     * Benefit Set and Get
+     * */
+    BenefitItem getBenefit ();
+
+    Boolean setBenefit (BenefitItem benefitItem);
 
     /****************************
      * Todo section Start here

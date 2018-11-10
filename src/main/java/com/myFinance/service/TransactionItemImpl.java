@@ -1,6 +1,8 @@
 package com.myFinance.service;
 
+import com.myFinance.entity.BenefitItem;
 import com.myFinance.entity.TransactionItem;
+import com.myFinance.repository_dao.BenefitRepository;
 import com.myFinance.repository_dao.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,13 +24,18 @@ public class TransactionItemImpl implements TransactionItemService{
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private TransactionRepository transactionRepository;
+    private BenefitRepository benefitRepository;
 
     private List<TransactionItem> items;
 
+    private BenefitItem benefitItem;
+
     @Autowired
-    public TransactionItemImpl(TransactionRepository transactionRepository) {
+    public TransactionItemImpl(TransactionRepository transactionRepository, BenefitRepository benefitRepository) {
         this.transactionRepository = transactionRepository;
+        this.benefitRepository = benefitRepository;
         this.items = this.getAllTransaction();
+        this.benefitItem = new BenefitItem();
     }
 
     /**
@@ -75,6 +84,30 @@ public class TransactionItemImpl implements TransactionItemService{
 
         items = getAllTransaction();
 
+        return true;
+    }
+
+    /**
+     * Get All Benefit Quantity
+     * */
+    @Override
+    public BenefitItem getBenefit() {
+        return benefitRepository.findById(1L) == null ? new BenefitItem() : benefitRepository.findById(1L);
+    }
+
+    /**
+     * Set Benefit Quantity
+     * */
+    @Override
+    public Boolean setBenefit(BenefitItem benefitItem) {
+        log.info(">> [Impl|setBenefit] - Setting the Benefit... ");
+        this.benefitItem.setId(1L);
+        this.benefitItem.setSzepCard1(benefitItem.getSzepCard1().equals("") ? getBenefit().getSzepCard1() : benefitItem.getSzepCard1());
+        this.benefitItem.setSzepCard2(benefitItem.getSzepCard2().equals("") ? getBenefit().getSzepCard2() : benefitItem.getSzepCard2());
+        this.benefitItem.setErzsiCard(benefitItem.getErzsiCard().equals("") ? getBenefit().getErzsiCard() : benefitItem.getErzsiCard());
+        this.benefitItem.setModificationDate(new Date().toString());
+        benefitRepository.save(this.benefitItem);
+        log.info(">> [Impl|setBenefit] - Benefit set. ");
         return true;
     }
 

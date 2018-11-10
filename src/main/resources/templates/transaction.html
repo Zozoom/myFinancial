@@ -17,7 +17,7 @@
     <div>
         <h1>Transactions page</h1>
 
-        <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
+        <form class="formTransact" name="transactionMake" th:action="@{/transaction/make}" th:object="${item}" method="post">
 
             <!-- Header -->
             <div class="formHead">
@@ -99,7 +99,7 @@
 
         <br/>
 
-        <form class="formTransact" name="registration" th:action="@{/transaction/make}" th:object="${item}" method="post">
+        <form class="formTransact" name="benefit" th:action="@{/benefit/make}" th:object="${benefitItem}" method="post">
 
             <!-- Header -->
             <div class="formHead">
@@ -120,15 +120,15 @@
                     <tbody>
                         <tr>
                             <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Kriszti [Szep]</td>
-                            <td><input type="text" placeholder="1000" required="required"/></td>
+                            <td><input type="text" th:field="*{szepCard1}" placeholder="9999"/></td>
                         </tr>
                         <tr>
                             <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Zoli [Szep]</td>
-                            <td><input type="text" placeholder="2000" required="required"/></td>
+                            <td><input type="text" th:field="*{szepCard2}" placeholder="9999"/></td>
                         </tr>
                         <tr>
                             <td><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;Erzsebet</td>
-                            <td><input type="text" placeholder="3000" required="required"/></td>
+                            <td><input type="text" th:field="*{erzsiCard}" placeholder="9999"/></td>
                         </tr>
                     </tbody>
                     <thead>
@@ -144,8 +144,8 @@
             <!-- Buttons -->
             <div class="formButton">
                 <div>
-                    <button type="submit" class="button buttonGreen" disabled="disabled">Save</button>
-                    <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'" disabled="disabled">Reset</button>
+                    <button type="submit" class="button buttonGreen">Save</button>
+                    <button type="button" class="button buttonYellow" onclick="window.location.href='/transaction'">Reset</button>
                 </div>
             </div>
             <!-- Buttons -->

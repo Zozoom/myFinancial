@@ -52,7 +52,7 @@
         </thead>
     </table>
 
-    <h3>Summary of ALL the Transactions</h3>
+    <h3>Summary of Transactions</h3>
     <table class="customers">
         <thead>
         <tr>
@@ -81,6 +81,36 @@
                 <td>Summary (K+Z):</td>
                 <td><span th:text="${summary}"> quantity </span> Huf</td>
             </tr>
+        </tbody>
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+    </table>
+
+    <h3>Summary of Benefits</h3>
+    <table class="customers">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="szep1">
+            <td>Kriszti Szép Card:</td>
+            <td><span th:text="${szep1}"> quantity </span> Huf</td>
+        </tr>
+        <tr id="szep2">
+            <td>Zoli Szép Card:</td>
+            <td><span th:text="${szep2}"> quantity </span> Huf</td>
+        </tr>
+        <tr id="bozsi">
+            <td>Erzsebet:</td>
+            <td><span th:text="${bozsi}"> quantity </span> Huf</td>
+        </tr>
         </tbody>
         <thead>
         <tr>

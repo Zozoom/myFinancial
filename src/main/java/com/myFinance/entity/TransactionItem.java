@@ -1,11 +1,12 @@
 package com.myFinance.entity;
 
+import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table( name="transactionItems" )
-public class TransactionItem {
+public @Data class TransactionItem {
 
     @Id
     @GeneratedValue
@@ -132,100 +133,5 @@ public class TransactionItem {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getTransactionNumber() {
-        return transactionNumber;
-    }
-
-    public void setTransactionNumber(int transactionNumber) {
-        this.transactionNumber = transactionNumber;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getCards() {
-        return cards;
-    }
-
-    public void setCards(String cards) {
-        this.cards = cards;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getItemCreationDate() {
-        return itemCreationDate;
-    }
-
-    public void setItemCreationDate(Date itemCreationDate) {
-        this.itemCreationDate = itemCreationDate;
-    }
-
-    @Override
-    public String toString() {
-        return "TransactionItem{" +
-                "id=" + id +
-                ", transactionNumber=" + transactionNumber +
-                ", direction='" + direction + '\'' +
-                ", currency='" + currency + '\'' +
-                ", comment='" + comment + '\'' +
-                ", category='" + category + '\'' +
-                ", cards='" + cards + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", creationDate='" + creationDate + '\'' +
-                ", itemCreationDate=" + itemCreationDate +
-                '}';
-    }
 }
 
