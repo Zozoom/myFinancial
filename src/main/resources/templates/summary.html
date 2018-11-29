@@ -62,7 +62,7 @@
                         <td><span th:text="${item.cards}"> Cards </span></td>
                         <td><span th:text="${item.direction}"> Type </span></td>
                         <td><span th:text="${item.category}"> Category </span></td>
-                        <td><span th:text="${item.quantity}"> Sum </span> Huf</td>
+                        <td><span id="sum" th:text="${item.quantity}"> Sum </span> Huf</td>
                         <td><span th:text="${item.comment}"> Comment </span></td>
                         <td><button class="button buttonGreen"><span class="glyphicon glyphicon-edit"></span></button></td>
                         <td><button class="button buttonGreen"><span class="glyphicon glyphicon-trash"></span></button></td>
@@ -89,12 +89,12 @@
                 <tr>
                     <th>Income Sum:</th>
                     <th>Expense Sum:</th>
-                    <th>Difference Sum:</th>
+                    <th>All Sum:</th>
                 </tr>
                 <tr>
-                    <td><span> 100000 Huf </span></td>
-                    <td><span> 100000 Huf </span></td>
-                    <td><span> 100000 Huf </span></td>
+                    <td id="incomeInner"><span> 100000 Huf </span></td>
+                    <td id="expenseInner"><span> 100000 Huf </span></td>
+                    <td id="allInner"><span> 100000 Huf </span></td>
                 </tr>
             </table>
         </div>
@@ -107,7 +107,8 @@
 
 <!-- scripts -->
 <script type="text/javascript" src="/static/js/dateFilter.js" th:src="@{/js/dateFilter.js}"></script>
-<script type="text/javascript" src="/static/js/searchInTable.js" th:src="@{/js/searchInTable.js}"></script>
+<script type="module" src="/static/js/searchInTable.js" th:src="@{/js/searchInTable.js}"></script>
+<script type="module" src="/static/js/szum.js" th:src="@{/js/szum.js}"></script>
 
 </body>
 </html>

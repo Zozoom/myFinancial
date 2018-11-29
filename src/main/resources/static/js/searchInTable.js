@@ -1,10 +1,16 @@
-var $rows = $('#myTable tbody tr');
+import * as sum from './szum.js';
+
+let $rows = $('#myTable tbody tr');
 
 $('#mySearch').keyup(function() {
-    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    let val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
     $rows.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        let text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        sum.calculateTableSum("Search-2");
         return !~text.indexOf(val);
     }).hide();
+
+    sum.calculateTableSum("Search-1");
+
 });
